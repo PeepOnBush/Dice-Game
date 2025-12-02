@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3wo5rrnkyik1"]
+
+[ext_resource type="Script" path="res://Script/dice_toss.gd" id="1_rpg5l"]
+[ext_resource type="Texture2D" uid="uid://c3qvstp5a0vk3" path="res://Sprite/DiceD8.png" id="2_33vub"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6a218"]
+friction = 0.8
+bounce = 0.35
+
+[node name="DiceD8" type="RigidBody2D" groups=["dice_group"]]
+position = Vector2(157, 76)
+rotation = -3.16053
+collision_layer = 6
+collision_mask = 7
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_6a218")
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_rpg5l")
+
+[node name="SpriteD8" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("2_33vub")
+hframes = 8
+frame = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-2.3367, -35.0505, 34.899, 5.66188, -1.75728, 39.9739, -40.1064, 5.24147)

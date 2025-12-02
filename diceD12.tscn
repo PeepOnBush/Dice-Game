@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://n14ihcb0n8cg"]
+
+[ext_resource type="Script" path="res://Script/dice_toss.gd" id="1_22um7"]
+[ext_resource type="Texture2D" uid="uid://be5wwvab2dve5" path="res://Sprite/DiceD12.png" id="2_yt3mt"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6a218"]
+friction = 0.8
+bounce = 0.35
+
+[node name="DiceD12" type="RigidBody2D" groups=["dice_group"]]
+position = Vector2(157, 76)
+rotation = -3.16053
+collision_layer = 6
+collision_mask = 7
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_6a218")
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_22um7")
+
+[node name="SpriteD12" type="Sprite2D" parent="."]
+scale = Vector2(2.905, 2.905)
+texture = ExtResource("2_yt3mt")
+hframes = 12
+frame = 3
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+scale = Vector2(0.58, 0.58)
+polygon = PackedVector2Array(-7.63498, -72.1575, 1.3634, -71.9871, 12.1342, -59.7809, 32.7896, -41.3865, 54.4069, -20.9735, 63.2349, -11.8047, 63.0076, 0.193169, 63.7991, 11.2101, 36.9706, 54.7099, 20.519, 78.4026, -7.47595, 77.8724, -36.4707, 77.3232, -52.9943, 52.0058, -78.0428, 1.52243, -74.7782, -12.4182, -55.384, -33.0547, -24.7834, -64.4809, -16.6334, -72.3279)

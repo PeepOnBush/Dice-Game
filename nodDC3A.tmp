@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=3 uid="uid://cr5fibw3bx775"]
+
+[ext_resource type="Script" path="res://Script/dice_toss.gd" id="1_axd4n"]
+[ext_resource type="Texture2D" uid="uid://c7mdkfoxher3k" path="res://Sprite/dice.png" id="2_xi0qy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue4bg"]
+size = Vector2(80, 80)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dlvm6"]
+size = Vector2(1150, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ba8c"]
+size = Vector2(1150, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fhpm1"]
+size = Vector2(648, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(31, 48)
+offset = Vector2(50, 50)
+
+[node name="Dice" type="RigidBody2D" parent="."]
+position = Vector2(61, 43)
+rotation = -2.71533
+collision_layer = 0
+contact_monitor = true
+script = ExtResource("1_axd4n")
+
+[node name="Sprite2D" type="Sprite2D" parent="Dice"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_xi0qy")
+hframes = 6
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Dice"]
+shape = SubResource("RectangleShape2D_ue4bg")
+
+[node name="WallTop" type="StaticBody2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallTop"]
+position = Vector2(81, -226)
+shape = SubResource("RectangleShape2D_dlvm6")
+
+[node name="WallBottom" type="StaticBody2D" parent="."]
+position = Vector2(-2, 648)
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallBottom"]
+position = Vector2(81, -226)
+shape = SubResource("RectangleShape2D_4ba8c")
+
+[node name="WallLeft" type="StaticBody2D" parent="."]
+position = Vector2(-269, 430)
+rotation = -1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallLeft"]
+position = Vector2(332, -226)
+shape = SubResource("RectangleShape2D_fhpm1")
+
+[node name="WallRight" type="StaticBody2D" parent="."]
+position = Vector2(883, 432)
+rotation = -1.5708
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallRight"]
+position = Vector2(332, -226)
+shape = SubResource("RectangleShape2D_fhpm1")

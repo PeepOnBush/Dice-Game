@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://btpxujcswkgrg"]
+
+[ext_resource type="Script" path="res://Script/dice_toss.gd" id="1_imqdl"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6a218"]
+friction = 0.8
+bounce = 0.35
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1y38w"]
+load_path = "res://.godot/imported/dice.png-10515e8089523c8b686f2d4689a64aec.s3tc.ctex"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wurc8"]
+size = Vector2(80, 80)
+
+[node name="Dice" type="RigidBody2D" groups=["dice_group"]]
+position = Vector2(157, 76)
+rotation = -3.16053
+collision_layer = 6
+collision_mask = 7
+mass = 2.0
+physics_material_override = SubResource("PhysicsMaterial_6a218")
+continuous_cd = 1
+contact_monitor = true
+script = ExtResource("1_imqdl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = SubResource("CompressedTexture2D_1y38w")
+hframes = 6
+frame = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_wurc8")

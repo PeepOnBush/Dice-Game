@@ -1,0 +1,181 @@
+[gd_scene load_steps=4 format=3 uid="uid://c87vhtvxd1c52"]
+
+[ext_resource type="Script" path="res://Script/pause_menu.gd" id="1_tuyeo"]
+[ext_resource type="FontFile" uid="uid://p411wgusjp3m" path="res://Sprite/m5x7.ttf" id="2_jox0i"]
+
+[sub_resource type="GDScript" id="GDScript_m5smo"]
+script/source = "class_name EndingController extends Control
+
+@onready var dice_scene = preload(\"res://dice.tscn\")
+@onready var dice_container = get_node(\"/root/Main/Node2D\")  # This holds your Dice nodes
+@onready var restart_button = $VBoxContainer/RestartButton
+@onready var exit_button = $VBoxContainer/ExitButton
+@onready var pause_menu: CanvasLayer = $\"../../..\"
+
+
+func _ready():
+	restart_button.pressed.connect(_on_restart)
+	exit_button.pressed.connect(_on_exit)
+
+
+
+func _on_restart():
+	get_node(\"/root/Main/SFX/ButtonClick\").play()
+
+	# Delete existing dice
+	for old_dice in get_tree().get_nodes_in_group(\"dice_group\"):
+		old_dice.queue_free()
+
+	# Respawn dice at default positions
+	var start_positions = [
+		Vector2(10, -75),
+		Vector2(100, -75),
+		Vector2(150, -75),
+		Vector2(200, -75),
+	]
+
+	for pos in start_positions:
+		var dice = dice_scene.instantiate()
+		dice.set_collision_layer(2)  # or whatever your original was
+		dice.global_position = pos
+		dice_container.add_child(dice)
+		dice.add_to_group(\"dice_group\")
+
+	pause_menu.visible = false
+
+func _on_exit():
+	get_tree().quit()
+"
+
+[node name="PauseMenu" type="CanvasLayer"]
+script = ExtResource("1_tuyeo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.481)
+
+[node name="TabContainer" type="TabContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 50
+tab_alignment = 1
+current_tab = 0
+
+[node name="DiceMenu" type="Control" parent="TabContainer"]
+layout_mode = 2
+mouse_filter = 2
+metadata/_tab_index = 0
+
+[node name="Panel" type="Panel" parent="TabContainer/DiceMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 7.0
+offset_top = 2.0
+offset_right = 6.0
+offset_bottom = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TabContainer/DiceMenu/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GridContainer" type="GridContainer" parent="TabContainer/DiceMenu/Panel/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 125
+theme_override_constants/v_separation = 45
+columns = 3
+
+[node name="D4" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d4"
+
+[node name="D6" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d6"
+
+[node name="D8" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d8
+"
+
+[node name="D10" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d10
+"
+
+[node name="D100" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d100"
+
+[node name="D12" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d12"
+
+[node name="D20" type="Button" parent="TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 75
+text = "Spawn d20
+"
+
+[node name="Exit" type="Control" parent="TabContainer"]
+visible = false
+layout_mode = 2
+metadata/_tab_index = 1
+
+[node name="Ending" type="Panel" parent="TabContainer/Exit"]
+self_modulate = Color(0.113281, 0.314178, 1, 1)
+layout_mode = 0
+offset_left = -1.0
+offset_top = 2.0
+offset_right = 1158.0
+offset_bottom = 597.0
+script = SubResource("GDScript_m5smo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TabContainer/Exit/Ending"]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 139.0
+offset_right = 532.0
+offset_bottom = 232.0
+scale = Vector2(3.5078, 2.57675)
+alignment = 1
+
+[node name="RestartButton" type="Button" parent="TabContainer/Exit/Ending/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jox0i")
+theme_override_font_sizes/font_size = 32
+text = "Restart"
+
+[node name="ExitButton" type="Button" parent="TabContainer/Exit/Ending/VBoxContainer"]
+texture_filter = 1
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_jox0i")
+theme_override_font_sizes/font_size = 32
+text = "Exit"
