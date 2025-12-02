@@ -4,7 +4,7 @@ extends CanvasLayer
 @onready var tab_container: TabContainer = $TabContainer
 @onready var dice_menu := $TabContainer/DiceMenu
 
-@onready var dice_container = get_node("/root/Main/Node2D")  # This holds your Dice nodes
+@onready var dice_container = get_node("/root/Main/Node2D")  # holds your Dice nodes
 
 
 @onready var pause_menu: CanvasLayer = $"."
@@ -16,12 +16,12 @@ extends CanvasLayer
 @onready var d_12: Button = $TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer/D12
 @onready var d_20: Button = $TabContainer/DiceMenu/Panel/ScrollContainer/GridContainer/D20
 
-@onready var diceD4_scene = preload("res://diceD4.tscn") # Your d6 dice scene
-@onready var diceD6_scene = preload("res://dice.tscn") # Your d6 dice scene
-@onready var diceD8_scene = preload("res://diceD8.tscn") # Your d6 dice scene
-@onready var diceD10_scene = preload("res://diceD10.tscn") # Your d6 dice scene
-@onready var diceD12_scene = preload("res://diceD12.tscn") # Your d6 dice scene
-@onready var diceD20_scene = preload("res://diceD20.tscn") # Your d6 dice scene
+@onready var diceD4_scene = preload("res://diceD4.tscn") #d4 dice scene
+@onready var diceD6_scene = preload("res://dice.tscn") #d6 dice scene
+@onready var diceD8_scene = preload("res://diceD8.tscn") #d8 dice scene
+@onready var diceD10_scene = preload("res://diceD10.tscn") #d10 dice scene
+@onready var diceD12_scene = preload("res://diceD12.tscn") #d12 dice scene
+@onready var diceD20_scene = preload("res://diceD20.tscn") #d20 dice scene
 
 var is_paused: bool = false
 
@@ -56,42 +56,42 @@ func hide_pause_menu() -> void:
 
 func _on_spawn_d4() -> void:
 	var dice = diceD4_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2)  
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")
 
 func _on_spawn_d6() -> void:
 	var dice = diceD6_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2) 
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")
 
 func _on_spawn_d8() -> void:
 	var dice = diceD8_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2) 
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")
 
 func _on_spawn_d10() -> void:
 	var dice = diceD10_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2)  
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")
 
 func _on_spawn_d12() -> void:
 	var dice = diceD12_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2) 
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")
 
 func _on_spawn_d20() -> void:
 	var dice = diceD20_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2) 
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")

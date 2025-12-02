@@ -105,7 +105,7 @@ func _physics_process(delta):
 		# Track how long dragging has occurred
 		drag_duration += delta
 
-		# ✅ Shake SFX condition
+		# Shake SFX condition
 		if GbFlag.dragging_dice_count >= 1 and drag_duration >= 1.2 and not shake_sound_played:
 			if shake_sound:
 				shake_sound.play()
@@ -116,7 +116,7 @@ func _physics_process(delta):
 		shake_sound.stop()
 		shake_sound_played = false
 		
-	# ✅ Final result condition (die has settled)
+		#die has settled
 	if linear_velocity.length() < 10 and angular_velocity < 1 and not final_value_chosen and GbFlag.start == true :
 			timer += delta
 			if timer >= 2.75:

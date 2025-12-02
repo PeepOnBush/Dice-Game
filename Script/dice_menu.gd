@@ -1,6 +1,6 @@
 extends Control
 
-@onready var dice_container = get_node("/root/Main/Node2D")  # This holds your Dice nodes
+@onready var dice_container = get_node("/root/Main/Node2D") 
 
 
 @onready var d4_button: Button = $Panel/ScrollContainer/GridContainer/D4
@@ -12,7 +12,7 @@ extends Control
 @onready var d20_button: Button = $Panel/ScrollContainer/GridContainer/D20
 
 
-@onready var dice_scene = preload("res://dice.tscn") # Your d6 dice scene
+@onready var dice_scene = preload("res://dice.tscn") 
 
 func _ready() -> void:
 	visible = false
@@ -32,7 +32,7 @@ func _input(event):
 
 func _on_spawn_d6() -> void:
 	var dice = dice_scene.instantiate()
-	dice.set_collision_layer(2)  # or whatever your original was
+	dice.set_collision_layer(2) 
 	dice.global_position = Vector2(100, -75)
 	dice_container.add_child(dice)
 	dice.add_to_group("dice_group")

@@ -1,7 +1,7 @@
 extends Node
 
 @onready var dice_scene = preload("res://dice.tscn")
-@onready var dice_container = get_node("/root/Main/Node2D")  # This holds your Dice nodes
+@onready var dice_container = get_node("/root/Main/Node2D")  #holds your Dice nodes
 
 
 var results = []
